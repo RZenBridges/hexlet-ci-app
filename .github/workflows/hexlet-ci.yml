@@ -11,12 +11,12 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - run: make setup
-      - run: make lint
-      - run: make test
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: {{ secrets.SNYK_TOKEN }}
         with:
           args: --severity-threshold=high
+      - run: make setup
+      - run: make lint
+      - run: make test
